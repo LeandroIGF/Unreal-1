@@ -44,7 +44,7 @@ TArray<AActor*> ACPP_FPS_Character::InteractionTraceObjects(const float Distance
 
 	TArray<AActor*> ActorsFound;
 
-	if (!IsValid(GetWorld()))
+	if (IsValid(GetWorld()))
 	{
 		return ActorsFound;
 	}
