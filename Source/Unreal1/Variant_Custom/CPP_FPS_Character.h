@@ -15,38 +15,12 @@ public:
 	// Sets default values for this character's properties
 	ACPP_FPS_Character();
 
-	//** Trace Interaction Distance
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
-	float DistanceInteraction = 1500.f;
-
-	//** Radius Interaction Distance
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
-	float RadiusInteraction = 400.f;
-
-	//** Objects types
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
-	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypesToInteract;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
-	bool bDebugInteraction = false;
-
 	//** Character Name
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
 	FString CharacterName = "";
 
-
-
 private:
-	//** ActorToIgnore
-	UPROPERTY(EditAnywhere, Category = "FPS_Character")
-	TArray<AActor*> ActorsToIgnore;
-
-	//** ActorToIgnore
-	UPROPERTY(EditAnywhere, Category = "FPS_Character")
-	TArray<AActor*> ActorsFound;
-
-	UPROPERTY(EditAnywhere, Category = "FPS_Character")
-	AActor* ClosestActor;
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -58,11 +32,4 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	// Interaction Trace Objects
-	UFUNCTION(BlueprintCallable, Category = "FPS_Character")
-	TArray<AActor*> InteractionTraceObjects(const float Distance, const float Radius);
-
-
-
 };
