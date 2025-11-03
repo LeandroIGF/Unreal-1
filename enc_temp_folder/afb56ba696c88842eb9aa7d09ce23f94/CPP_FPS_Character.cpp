@@ -25,7 +25,21 @@ void ACPP_FPS_Character::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	
-	InteractionTraceObjects(DistanceInteraction, RadiusInteraction);
+	ActorsFound = InteractionTraceObjects(DistanceInteraction, RadiusInteraction);
+	float Distance;
+	float InitDistance = 5000;
+	ClosestActor = nullptr;
+
+	for (AActor* Actor : ActorsFound)
+	{
+		Distance = Actor->GetDistanceTo(this);
+
+		if (Distance < InitDistance)
+		{
+			InitDistance = Distance;
+			ClosestActor = Actor;
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -39,13 +53,13 @@ TArray<AActor*> ACPP_FPS_Character::InteractionTraceObjects(const float Distance
 {
 	FVector EndTrace = GetActorLocation() + (GetActorForwardVector() * Distance);
 
-	TArray<AActor*> ActorsToIgnore;
+	
 	TArray<FHitResult> Hits;
 
-	TArray<AActor*> ActorsFound;
+	TArray<AActor*> ActorsFoundInternal;
 
-	if (IsValid(GetWorld()))
-	{
+	if (!IsValid(GetWorld()))
+	{		
 		return ActorsFound;
 	}
 
@@ -66,9 +80,33 @@ TArray<AActor*> ACPP_FPS_Character::InteractionTraceObjects(const float Distance
 	{
 		if (IsValid(HitResult.GetActor()))
 		{
-			ActorsFound.AddUnique(HitResult.GetActor());
+			
+			ActorsFoundInternal.AddUnique(HitResult.GetActor());
 		}		
 	}
+
+	// UE LOG
+	UE_LOG(LogTemp, Warning, TEXT("CHARACTER: %s"), *CharacterName);
+
+	// LOG A SCHERMO
+	/*
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(
+			1,
+			3.f,
+			FColor::Yellow,
+			TEXT("CHARACTER")
+		);
+	}
+
+	// LOG TRAMITE KISMET SYSTEM LIBRARY
+	if (IsValid(GetWorld()))
+	{
+		UKismetSystemLibrary::PrintString(GetWorld(), "CHARACTER");
+	}
+	*/
+
 
 	return ActorsFound;
 }

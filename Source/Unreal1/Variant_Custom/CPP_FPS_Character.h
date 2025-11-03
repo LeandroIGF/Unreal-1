@@ -30,6 +30,23 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
 	bool bDebugInteraction = false;
 
+	//** Character Name
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
+	FString CharacterName = "";
+
+
+
+private:
+	//** ActorToIgnore
+	UPROPERTY(EditAnywhere, Category = "FPS_Character")
+	TArray<AActor*> ActorsToIgnore;
+
+	//** ActorToIgnore
+	UPROPERTY(EditAnywhere, Category = "FPS_Character")
+	TArray<AActor*> ActorsFound;
+
+	UPROPERTY(EditAnywhere, Category = "FPS_Character")
+	AActor* ClosestActor;
 
 protected:
 	// Called when the game starts or when spawned
