@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "CPP_FPS_Character.generated.h"
 
+class UCPP_FPS_InteractionComponent;
+
 UCLASS()
 class UNREAL1_API ACPP_FPS_Character : public ACharacter
 {
@@ -19,8 +21,24 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
 	FString CharacterName = "";
 
-private:
+	//** ActorClass To Spawn
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
+	TSubclassOf<AActor> CompanionClass;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character", Meta = (MakeEditWidget = true))
+	TArray<FTransform> Transform;
+
 	
+
+private:
+
+	
+	
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "FPS_Character", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UStaticMeshComponent> CompanionMesh; // UStaticMeshComponent*
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "FPS_Character", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCPP_FPS_InteractionComponent> InteractionComponent; // UCPP_FPS_InteractionComponent*
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,4 +50,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void OnConstruction();
 };

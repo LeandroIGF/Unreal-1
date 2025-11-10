@@ -7,7 +7,7 @@
 #include "CPP_FPS_InteractionComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), BlueprintType, Blueprintable)
 class UNREAL1_API UCPP_FPS_InteractionComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -28,6 +28,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
 	bool bDebugInteraction = false;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character", Meta = (MakeEditWidget = true))
+	TArray<FTransform> Transform;
+
 private:
 	//** ActorToIgnore
 	UPROPERTY(VisibleAnywhere, Category = "FPS_Character")
@@ -39,6 +42,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "FPS_Character")
 	AActor* ClosestActor;
+
+	
 
 public:	
 	// Sets default values for this component's properties
