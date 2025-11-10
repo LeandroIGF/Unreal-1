@@ -63,7 +63,7 @@ void ACPP_FPS_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 }
 
-void ACPP_FPS_Character::OnConstruction()
+void ACPP_FPS_Character::OnConstruction(const FTransform& Transforms)
 {
 
 
