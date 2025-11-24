@@ -31,6 +31,16 @@ ACPP_PickUp::ACPP_PickUp()
 
 }
 
+void ACPP_PickUp::Interact(AActor* Actor)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Interact base method Implemented in Pick Up class c++"));
+}
+
+void ACPP_PickUp::BlueprintInteract_Implementation(AActor* Actor)
+{
+	UE_LOG(LogTemp, Warning, TEXT("BlueprintInteract Implemented in Pick Up class c++"));
+}
+
 // Called when the game starts or when spawned
 void ACPP_PickUp::BeginPlay()
 {

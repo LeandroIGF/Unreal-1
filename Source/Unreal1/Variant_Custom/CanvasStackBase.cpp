@@ -6,7 +6,6 @@
 #include "CommonUI/Public/Widgets/CommonActivatableWidgetContainer.h"
 
 
-
 void UCanvasStackBase::NativeConstruct()
 {
 

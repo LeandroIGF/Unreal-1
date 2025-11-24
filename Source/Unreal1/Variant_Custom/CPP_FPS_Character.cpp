@@ -45,6 +45,10 @@ void ACPP_FPS_Character::BeginPlay()
 
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 100.f, 12, FColor::Blue, false, 5.f, (uint8)0U, 10.f);
 	
+	if(IsValid(InteractionComponent))
+	{
+		UE_LOG(LogTemp, Display, TEXT("IS VALID"));
+	}
 	
 }
 
@@ -68,6 +72,37 @@ void ACPP_FPS_Character::OnConstruction(const FTransform& Transforms)
 
 
 }
+
+AActor* ACPP_FPS_Character::GetCompanion()
+{	
+	if(!IsValid(SpawnedCompanionActor))
+	{		
+		return nullptr;
+	}
+
+	FVector Location;
+
+	Location = SpawnedCompanionActor->GetActorLocation();
+
+	return SpawnedCompanionActor;
+}
+
+void ACPP_FPS_Character::PrintInteractable()
+{
+	if (InteractableObject.GetObject())
+	{
+		InteractableObject.GetInterface()->OptionalInteract(this);
+	}
+}
+
+void ACPP_FPS_Character::InterfaceBluprintFunction(const TScriptInterface<IInteract>& InterfacInput, TScriptInterface<IInteract>& InterfaceOutput)
+{
+	
+}
+
+
+
+
 
 
 

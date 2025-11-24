@@ -4,20 +4,27 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Variant_Custom/Interact.h"
 #include "CPP_PickUp.generated.h"
+
 
 class UPickUpMovementComponent;
 class USphereComponent;
 class UStaticMeshComponent;
 
 UCLASS()
-class UNREAL1_API ACPP_PickUp : public AActor
+class UNREAL1_API ACPP_PickUp : public AActor, public IInteract
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
 	ACPP_PickUp();
+
+	// implementazione IInteract interface
+	virtual void Interact(AActor* Actor) override;
+
+	void BlueprintInteract_Implementation(AActor* Actor);
 
 private:
 

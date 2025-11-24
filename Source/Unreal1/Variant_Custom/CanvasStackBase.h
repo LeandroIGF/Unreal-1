@@ -8,7 +8,7 @@
 
 class UCanvasPanel;
 class UCommonActivatableWidgetContainerBase;
-
+class UCommonActivatableWidgetStack;
 /**
  * 
  */

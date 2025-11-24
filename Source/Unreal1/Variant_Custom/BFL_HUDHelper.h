@@ -23,4 +23,9 @@ class UNREAL1_API UBFL_HUDHelper : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "HUD Helper")
 	static void PushWidget(TSubclassOf<UCommonActivatableWidget> WidgetToPush);
 
+	//Print interface info
+	UFUNCTION(BlueprintCallable, Category = "HUD Helper")
+	static void ShowInteractInfo(AActor* ActorInfo);
+
+	
 };

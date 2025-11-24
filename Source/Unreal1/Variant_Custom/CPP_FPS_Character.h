@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Interact.h"
 #include "CPP_FPS_Character.generated.h"
 
 class UCPP_FPS_InteractionComponent;
@@ -28,7 +29,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character", Meta = (MakeEditWidget = true))
 	TArray<FTransform> Transform;
 
-	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
+	TScriptInterface<IInteract> InteractableObject;
 
 private:
 
@@ -40,7 +42,9 @@ private:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "FPS_Character", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCPP_FPS_InteractionComponent> InteractionComponent; // UCPP_FPS_InteractionComponent*
 
-	
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "FPS_Character", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<AActor> SpawnedCompanionActor; // AActor*
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -54,4 +58,14 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void OnConstruction(const FTransform& Transforms);
+
+	UFUNCTION(BlueprintCallable, Category = "FPS_Character")
+	AActor* GetCompanion();
+
+	UFUNCTION(BlueprintCallable, Category = "FPS_Character")
+	void PrintInteractable();
+
+	UFUNCTION(BlueprintCallable, Category = "FPS_Character")
+	void InterfaceBluprintFunction(const TScriptInterface<IInteract>& InterfacInput, TScriptInterface<IInteract>& InterfaceOutput);
+
 };
