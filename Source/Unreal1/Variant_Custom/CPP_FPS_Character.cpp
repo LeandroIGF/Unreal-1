@@ -49,7 +49,47 @@ void ACPP_FPS_Character::BeginPlay()
 	{
 		UE_LOG(LogTemp, Display, TEXT("IS VALID"));
 	}
-	
+
+	//SETUP CALL BACK PICK UPS
+
+	//BIND
+	for (ACPP_PickUp* Target : PickUps)
+	{
+		if(Target)
+		{	
+			// bind multicast dynamic delegate
+			Target->OnInteractMultiDynamic.AddDynamic(this, &ACPP_FPS_Character::PrintInteractable);
+
+			// bind single dynamic delegate
+			Target->OnInteractSingleDynamic.BindDynamic(this, &ACPP_FPS_Character::PrintInteractable);
+
+			// bind single delegate
+			Target->OnInteractSingle.BindUObject(this, &ACPP_FPS_Character::PrintInteractable);
+
+			// bind multicast delegate
+			Target->OnInteractMulti.AddUObject(this, &ACPP_FPS_Character::PrintInteractable);
+		}
+	}
+
+	for (ACPP_PickUp* Target : PickUps)
+	{
+		if (Target)
+		{
+			// bind multicast dynamic delegate
+			Target->OnInteractMultiDynamic.Broadcast();
+
+			// bind multicast delegate
+			Target->OnInteractMulti.Broadcast();
+			
+			// bind single delegate
+			Target->OnInteractSingle.Execute();
+			
+			// bind single dynamic delegate
+			Target->OnInteractSingleDynamic.Execute();
+			
+			
+		}
+	}	
 }
 
 // Called every frame

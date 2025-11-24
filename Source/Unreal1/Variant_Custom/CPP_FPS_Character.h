@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interact.h"
+#include "CPP_PickUp.h"
 #include "CPP_FPS_Character.generated.h"
 
 class UCPP_FPS_InteractionComponent;
@@ -31,6 +32,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
 	TScriptInterface<IInteract> InteractableObject;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "FPS_Character")
+	TArray<ACPP_PickUp*> PickUps;
 
 private:
 
