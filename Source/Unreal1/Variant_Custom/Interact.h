@@ -7,7 +7,7 @@
 #include "Interact.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI, Blueprintable)
+UINTERFACE(MinimalAPI, BlueprintType)
 class UInteract : public UInterface
 {
 	GENERATED_BODY()
@@ -36,5 +36,7 @@ public:
 	// non si puo' creare un'implementazione di default in questa interfaccia
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void BlueprintInteract(AActor* Actor);
+
+	//virtual void BlueprintInteract_Implementation(AActor* Actor);
 	
 };

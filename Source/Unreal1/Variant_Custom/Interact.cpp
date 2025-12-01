@@ -8,7 +8,11 @@
 
 void IInteract::OptionalInteract(AActor* Actor)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Optional Interact Implemented in c++"));
+	UE_LOG(LogTemp, Warning, TEXT("Optional Interact Implemented in c++")); 
+	AActor* ImplementerActor = Cast<AActor>(this);
+	//const AActor* ImplementerActor = Cast<IInteract>(this);
+	//TODO: aggiungere controllo puntatore
+	Execute_BlueprintInteract(ImplementerActor, ImplementerActor);
 }
 
 

@@ -38,6 +38,7 @@ void ACPP_PickUp::Interact(AActor* Actor)
 
 void ACPP_PickUp::BlueprintInteract_Implementation(AActor* Actor)
 {
+	IInteract::BlueprintInteract_Implementation(Actor);
 	UE_LOG(LogTemp, Warning, TEXT("BlueprintInteract Implemented in Pick Up class c++"));
 }
 

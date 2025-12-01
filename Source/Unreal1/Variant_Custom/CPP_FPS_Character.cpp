@@ -52,6 +52,19 @@ void ACPP_FPS_Character::BeginPlay()
 
 	//SETUP CALL BACK PICK UPS
 
+	//Interfaces
+	for (ACPP_PickUp* Target : PickUps)
+	{
+		if (Target->Implements<UInteract>())
+		{
+			TScriptInterface<IInteract> Interactable = TScriptInterface<IInteract>(Target);
+			//Interactable.GetInterface()->BlueprintInteract(this);
+			IInteract::Execute_BlueprintInteract(Interactable.GetObject(), this);
+
+		}
+	}
+
+
 	//BIND
 	for (ACPP_PickUp* Target : PickUps)
 	{
@@ -85,9 +98,7 @@ void ACPP_FPS_Character::BeginPlay()
 			Target->OnInteractSingle.Execute();
 			
 			// bind single dynamic delegate
-			Target->OnInteractSingleDynamic.Execute();
-			
-			
+			Target->OnInteractSingleDynamic.Execute();			
 		}
 	}	
 }
@@ -129,9 +140,16 @@ AActor* ACPP_FPS_Character::GetCompanion()
 
 void ACPP_FPS_Character::PrintInteractable()
 {
-	if (InteractableObject.GetObject())
+	if (InteractableObject.GetObject() && InteractableObject.GetInterface())
 	{
+		// se la classe che ha l'interfaccia il suo padre c++ lo implementa
 		InteractableObject.GetInterface()->OptionalInteract(this);
+	}
+	else
+	{
+		// se la classe e' un blueprint che implementa l'interfaccia
+		//IInteractable::Execute_BlueprintInteract
+		InteractableObject.GetInterface()->Execute_BlueprintInteract(InteractableObject.GetObject(), this);
 	}
 }
 

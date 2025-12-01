@@ -47,6 +47,11 @@
 		{
 			"Name": "CommonUI",
 			"Enabled": true
+		},
+		{
+			"Name": "GlobalEvents",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product//b16795a9-1d1d-4a2a-8bb6-0566981a4c42"
 		}
 	]
 }

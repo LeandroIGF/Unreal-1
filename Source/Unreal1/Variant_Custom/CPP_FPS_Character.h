@@ -72,4 +72,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "FPS_Character")
 	void InterfaceBluprintFunction(const TScriptInterface<IInteract>& InterfacInput, TScriptInterface<IInteract>& InterfaceOutput);
 
+	//virtual void OnActorEndOverlap() override;
+
 };
